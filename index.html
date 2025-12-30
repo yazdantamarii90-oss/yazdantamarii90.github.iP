@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>فروشگاه لوازم خانگی آریا | خرید آنلاین با بهترین قیمت</title>
+
+  <!-- فونت فارسی Vazirmatn -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link href="https://cdn.jsdelivr.net/npm/vazirmatn@33.0.0/Vazirmatn-font-face.css" rel="stylesheet" />
+
+  <style>
+    :root{
+      --primary:#1976d2;
+      --primary-600:#1565c0;
+      --secondary:#455a64;
+      --bg:#f7f8fb;
+      --card:#ffffff;
+      --border:#e5e7eb;
+      --text:#2b2f33;
+      --muted:#6b7280;
+      --success:#2e7d32;
+      --radius:12px;
+      --shadow:0 10px 25px rgba(20,46,80,.08);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Vazirmatn',system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Layout */
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:50;
+      background:#fff;
+      border-bottom:1px solid var(--border);
+      backdrop-filter:saturate(180%) blur(8px);
+    }
+    .header-inner{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:16px;padding:14px 0;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;font-weight:800;color:var(--primary);
+      letter-spacing:.2px;font-size:1.05rem;
+    }
+    .brand .logo{
+      width:36px;height:36px;border-radius:10px;
+      background:linear-gradient(135deg,var(--primary),#42a5f5);
+      box-shadow:0 6px 16px rgba(25,118,210,.25);
+    }
+    nav{display:flex;gap:20px;align-items:center}
+    nav a{
+      color:var(--secondary);text-decoration:none;font-weight:600;
+      padding:10px 12px;border-radius:8px;
+      transition:color .2s,background .2s;
+    }
+    nav a:hover{color:var(--primary);background:#f0f7ff}
+    .header-actions{display:flex;align-items:center;gap:10px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      gap:8px;cursor:pointer;border:1px solid transparent;
+      border-radius:10px;padding:10px 14px;font-weight:700;font-size:.95rem;
+      transition:transform .06s ease,box-shadow .2s,border-color .2s,background .2s,color .2s;
+      user-select:none
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:var(--primary);color:#fff;box-shadow:0 8px 18px rgba(25,118,210,.25)}
+    .btn-primary:hover{background:var(--primary-600)}
+    .btn-outline{background:#fff;border-color:var(--border);color:var(--secondary)}
+    .btn-outline:hover{border-color:#cfd8dc;background:#f9fafb}
+    .cart{
+      position:relative
+    }
+    .cart-badge{
+      position:absolute;top:-8px;left:-8px;
+      min-width:22px;height:22px;padding:0 6px;border-radius:999px;
+      background:#ff5252;color:#fff;font-size:.8rem;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 6px 12px rgba(255,82,82,.35)
+    }
+    .hamburger{
+      display:none;width:44px;height:44px;border-radius:10px;
+      border:1px solid var(--border);background:#fff;cursor:pointer
+    }
+    .hamburger span{display:block;width:20px;height:2px;background:var(--secondary);margin:5px auto;border-radius:2px}
+
+    /* Hero */
+    .hero{
+      position:relative;isolation:isolate;
+      background:
+        radial-gradient(1200px 400px at 85% -200px rgba(25,118,210,.10),transparent),
+        linear-gradient(180deg,#f8fbff 0%,#eef3f8 100%);
+      border-bottom:1px solid var(--border);
+    }
+    .hero-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;padding:56px 0}
+    .headline{font-size:2rem;font-weight:900;color:#0f172a;letter-spacing:.3px;margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 24px;font-size:1.05rem}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-card{
+      background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);
+      padding:22px;display:grid;gap:12px;justify-items:center;text-align:center
+    }
+    .hero-card img{
+      width:100%;max-width:380px;height:220px;object-fit:cover;border-radius:12px;background:#e9eef3
+    }
+
+    /* Categories */
+    .section-title{
+      font-weight:800;font-size:1.25rem;color:#0f172a;margin:0 0 18px
+    }
+    .categories{
+      padding:38px 0
+    }
+    .cat-grid{
+      display:grid;gap:16px;grid-template-columns:repeat(5,1fr)
+    }
+    .cat{
+      background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;
+      display:flex;align-items:center;gap:12px;transition:transform .12s ease,box-shadow .2s,border-color .2s;
+      cursor:pointer
+    }
+    .cat:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#dbe4ea}
+    .cat-icon{
+      width:44px;height:44px;border-radius:10px;background:#e3f2fd;color:var(--primary);
+      display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800
+    }
+    .cat-name{font-weight:700;color:#334155}
+
+    /* Products */
+    .products{padding:14px 0 44px}
+    .product-grid{
+      display:grid;gap:18px;grid-template-columns:repeat(4,1fr)
+    }
+    .card{
+      background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);
+      display:flex;flex-direction:column
+    }
+    .card-media{
+      position:relative;background:#eef2f7
+    }
+    .card-media img{
+      width:100%;height:180px;object-fit:cover;display:block
+    }
+    .badge{
+      position:absolute;top:12px;right:12px;background:#e3f2fd;color:var(--primary);
+      padding:6px 10px;border-radius:999px;font-weight:800;font-size:.85rem;border:1px solid #cfe8ff
+    }
+    .card-body{padding:16px}
+    .card-title{margin:0 0 8px;font-weight:800;color:#0f172a}
+    .price{
+      color:var(--primary);font-weight:900;font-size:1.05rem;margin:0 0 14px
+    }
+    .card-actions{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .mini{padding:8px 12px;border-radius:10px;font-weight:800;font-size:.92rem}
+    .btn-ghost{background:#f7fafc;color:#334155;border:1px solid var(--border)}
+    .btn-ghost:hover{background:#eef3f8}
+
+    /* Advantages */
+    .advantages{
+      padding:42px 0;background:linear-gradient(180deg,#f3f6fb 0%,#eef3f8 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border)
+    }
+    .adv-grid{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+    .adv{
+      background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px;display:flex;gap:14px;align-items:center;box-shadow:var(--shadow)
+    }
+    .adv i{
+      width:42px;height:42px;border-radius:10px;background:#e8f5e9;color:var(--success);
+      display:flex;align-items:center;justify-content:center;font-weight:900
+    }
+    .adv h4{margin:0;font-size:1rem;color:#0f172a}
+    .adv p{margin:4px 0 0;color:var(--muted);font-size:.95rem}
+
+    /* Footer */
+    footer{background:#0f172a;color:#e2e8f0;padding:28px 0;margin-top:24px}
+    .footer-grid{display:grid;gap:18px;grid-template-columns:1.2fr .8fr .8fr;align-items:center}
+    .copyright{font-weight:700}
+    .contact{color:#cbd5e1}
+    .social{display:flex;gap:10px;justify-content:flex-start}
+    .social a{
+      width:40px;height:40px;border-radius:10px;background:#111827;color:#e5e7eb;
+      display:flex;align-items:center;justify-content:center;text-decoration:none;font-weight:800;border:1px solid #1f2937
+    }
+    .social a:hover{background:#0b1220}
+
+    /* Responsive */
+    @media (max-width:1024px){
+      .hero-inner{grid-template-columns:1fr;gap:24px}
+      .cat-grid{grid-template-columns:repeat(3,1fr)}
+      .product-grid{grid-template-columns:repeat(3,1fr)}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:720px){
+      nav{display:none}
+      .hamburger{display:inline-block}
+      .mobile-nav{
+        display:none;flex-direction:column;gap:8px;padding:10px;background:#fff;border-bottom:1px solid var(--border)
+      }
+      .mobile-nav a{padding:10px 12px;border-radius:8px;text-decoration:none;color:#334155}
+      .mobile-nav a:hover{background:#f1f5f9}
+      .cat-grid{grid-template-columns:repeat(2,1fr)}
+      .product-grid{grid-template-columns:repeat(2,1fr)}
+      .hero-inner{padding:38px 0}
+    }
+    @media (max-width:420px){
+      .product-grid{grid-template-columns:1fr}
+      .cat-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <span>فروشگاه لوازم خانگی آریا</span>
+      </div>
+
+      <nav aria-label="منوی اصلی">
+        <a href="#home">خانه</a>
+        <a href="#shop">فروشگاه</a>
+        <a href="#about">درباره ما</a>
+        <a href="#contact">تماس با ما</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn hamburger" aria-label="باز کردن منو">
+          <span></span><span></span><span></span>
+        </button>
+        <button class="btn btn-outline" id="scrollToProducts">مشاهده محصولات</button>
+        <button class="btn btn-primary cart" id="openCart">
+          سبد خرید
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-nav" id="mobileNav">
+      <a href="#home">خانه</a>
+      <a href="#shop">فروشگاه</a>
+      <a href="#about">درباره ما</a>
+      <a href="#contact">تماس با ما</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container hero-inner">
+      <div>
+        <h1 class="headline">خرید آنلاین لوازم خانگی با بهترین قیمت</h1>
+        <p>با آریا، جدیدترین مدل‌های یخچال، ماشین لباسشویی، ظرفشویی و لوازم پخت‌وپز را با تضمین اصالت و ارسال سریع تهیه کنید.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="ctaToShop">مشاهده محصولات</button>
+          <button class="btn btn-outline">تماس با پشتیبانی</button>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="نمونه محصولات">
+        <img src="https://images.unsplash.com/photo-1586201375754-1426c76e0cd1?q=80&w=1200&auto=format&fit=crop" alt="لوازم خانگی مدرن در آشپزخانه" />
+        <div class="card-actions" style="width:100%">
+          <span class="badge">پرفروش</span>
+          <span class="price">از ۷,۰۰۰,۰۰۰ تومان</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="categories" id="shop">
+    <div class="container">
+      <h2 class="section-title">دسته‌بندی‌ها</h2>
+      <div class="cat-grid">
+        <div class="cat" role="button" tabindex="0">
+          <div class="cat-icon">❄️</div>
+          <div class="cat-name">یخچال و فریزر</div>
+        </div>
+        <div class="cat" role="button" tabindex="0">
+          <div class="cat-icon">🧺</div>
+          <div class="cat-name">ماشین لباسشویی</div>
+        </div>
+        <div class="cat" role="button" tabindex="0">
+          <div class="cat-icon">🍽️</div>
+          <div class="cat-name">ماشین ظرفشویی</div>
+        </div>
+        <div class="cat" role="button" tabindex="0">
+          <div class="cat-icon">🌀</div>
+          <div class="cat-name">جاروبرقی</div>
+        </div>
+        <div class="cat" role="button" tabindex="0">
+          <div class="cat-icon">🍳</div>
+          <div class="cat-name">لوازم پخت‌وپز</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="products">
+    <div class="container">
+      <h2 class="section-title">محصولات پرفروش</h2>
+      <div class="product-grid" id="productGrid">
+        <!-- محصول ۱ -->
+        <article class="card">
+          <div class="card-media">
+            <img src="https://via.placeholder.com/600x360?text=Refrigerator" alt="یخچال آریا مدل X" />
+            <span class="badge">ویژه</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">یخچال آریا مدل X</h3>
+            <p class="price">۲۵,۰۰۰,۰۰۰ تومان</p>
+            <div class="card-actions">
+              <button class="btn mini btn-primary add-to-cart" data-title="یخچال آریا مدل X" data-price="25000000">افزودن به سبد خرید</button>
+              <button class="btn mini btn-ghost">مشاهده جزئیات</button>
+            </div>
+          </div>
+        </article>
+        <!-- محصول ۲ -->
+        <article class="card">
+          <div class="card-media">
+            <img src="https://via.placeholder.com/600x360?text=Washing+Machine" alt="ماشین لباسشویی آریا مدل Y" />
+            <span class="badge">پرفروش</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">ماشین لباسشویی آریا مدل Y</h3>
+            <p class="price">۱۵,۰۰۰,۰۰۰ تومان</p>
+            <div class="card-actions">
+              <button class="btn mini btn-primary add-to-cart" data-title="ماشین لباسشویی آریا مدل Y" data-price="15000000">افزودن به سبد خرید</button>
+              <button class="btn mini btn-ghost">مشاهده جزئیات</button>
+            </div>
+          </div>
+        </article>
+        <!-- محصول ۳ -->
+        <article class="card">
+          <div class="card-media">
+            <img src="https://via.placeholder.com/600x360?text=Dishwasher" alt="ماشین ظرفشویی آریا مدل Z" />
+            <span class="badge">جدید</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">ماشین ظرفشویی آریا مدل Z</h3>
+            <p class="price">۱۸,۰۰۰,۰۰۰ تومان</p>
+            <div class="card-actions">
+              <button class="btn mini btn-primary add-to-cart" data-title="ماشین ظرفشویی آریا مدل Z" data-price="18000000">افزودن به سبد خرید</button>
+              <button class="btn mini btn-ghost">مشاهده جزئیات</button>
+            </div>
+          </div>
+        </article>
+        <!-- محصول ۴ -->
+        <article class="card">
+          <div class="card-media">
+            <img src="https://via.placeholder.com/600x360?text=Vacuum" alt="جاروبرقی آریا مدل V" />
+            <span class="badge">اقتصادی</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">جاروبرقی آریا مدل V</h3>
+            <p class="price">۷,۰۰۰,۰۰۰ تومان</p>
+            <div class="card-actions">
+              <button class="btn mini btn-primary add-to-cart" data-title="جاروبرقی آریا مدل V" data-price="7000000">افزودن به سبد خرید</button>
+              <button class="btn mini btn-ghost">مشاهده جزئیات</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Advantages -->
+  <section class="advantages" id="about">
+    <div class="container">
+      <div class="adv-grid">
+        <div class="adv">
+          <i>🚚</i>
+          <div>
+            <h4>ارسال سریع</h4>
+            <p>تحویل در کوتاه‌ترین زمان در سراسر کشور.</p>
+          </div>
+        </div>
+        <div class="adv">
+          <i>✅</i>
+          <div>
+            <h4>ضمانت اصالت کالا</h4>
+            <p>همه کالاها با گارانتی معتبر و بسته‌بندی امن.</p>
+          </div>
+        </div>
+        <div class="adv">
+          <i>📞</i>
+          <div>
+            <h4>پشتیبانی ۲۴ ساعته</h4>
+            <p>همیشه در کنار شما برای پاسخ‌گویی سریع و دقیق.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container footer-grid">
+      <div class="copyright">© ۲۰۲۵ فروشگاه لوازم خانگی آریا. همه حقوق محفوظ است.</div>
+      <div class="contact">شماره تماس: ۰۲۱-۱۲۳۴۵۶۷۸</div>
+      <div class="social" aria-label="شبکه‌های اجتماعی">
+        <a href="#" aria-label="وب‌سایت">🌐</a>
+        <a href="#" aria-label="فیسبوک">📘</a>
+        <a href="#" aria-label="اینستاگرام">📸</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // اسکرول نرم به بخش محصولات
+    const scrollButtons = [document.getElementById('ctaToShop'), document.getElementById('scrollToProducts')];
+    scrollButtons.forEach(btn=>{
+      if(btn){
+        btn.addEventListener('click', ()=> {
+          document.getElementById('shop').scrollIntoView({behavior:'smooth'});
+        });
+      }
+    });
+
+    // منوی موبایل
+    const burger = document.querySelector('.hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    if(burger){
+      burger.addEventListener('click', ()=>{
+        const visible = mobileNav.style.display === 'flex';
+        mobileNav.style.display = visible ? 'none' : 'flex';
+      });
+    }
+
+    // سبد خرید نمایشی
+    const cartCountEl = document.getElementById('cartCount');
+    const addButtons = document.querySelectorAll('.add-to-cart');
+    let cartCount = 0;
+    addButtons.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        cartCount++;
+        cartCountEl.textContent = cartCount;
+        btn.classList.add('added');
+        btn.textContent = 'افزوده شد';
+        setTimeout(()=>{ btn.textContent = 'افزودن به سبد خرید'; btn.classList.remove('added'); }, 1200);
+      });
+    });
+
+    // بستن منوی موبایل پس از انتخاب لینک
+    mobileNav?.querySelectorAll('a').forEach(link=>{
+      link.addEventListener('click', ()=> mobileNav.style.display='none');
+    });
+  </script>
+</body>
+</html>
